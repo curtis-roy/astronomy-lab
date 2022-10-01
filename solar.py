@@ -1,14 +1,16 @@
 #!/bin/env python3
 
-"""Get the sun's position in the sky"""
+""" Get the sun's position in the sky using coordinates from the API at
+    https://astronomyapi.com and geolocation from <other site>.
+    'Always know where your towel is.'  --Ford Prefect
+    """
 
 import datetime
 import requests
+from constants import constant1, constant2
 
-
-#### Move these to external location ASAP ####
-ASTRONOMYAPI_ID = "<yourapiid>"
-ASTRONOMYAPI_SECRET = "<yourapisecretkey>"
+eochair = constant1
+runda = constant2
 
 ###############################
 ####  PICK IT BACK UP HERE ####
@@ -58,5 +60,4 @@ if __name__ == "__main__":
     azimuth, altitude = get_sun_position()
     print_position(azimuth, altitude)
 
-""" 'Always know where your towel is.'  --Ford Prefect """
 

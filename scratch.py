@@ -2,22 +2,26 @@
 
 # """Scratchpad"""
 
-#  THIS IS FUCKED  ##
-
 from pprint import pprint
 import requests
+import json
 
 
 def get_location():
-    """ Returns the longitude and latitude for the location of this IP.
+    """ Returns the longitude and latitude for the location of an IP.
 
         Returns:
-        str:  latitude
-        str:  longitude
+        float:  latitude
+        float:  longitude
         """
-
+    target = requests.get('http://ip-api.com/json/174.31.14.127?fields=lat,lon')
+    target_data = json.loads(target.text)
+    latitude = (target_data['lat'])
+    longitude = (target_data['lon'])
+    return latitude, longitude
 
 get_location()
+
 
 
     # add return values here when available

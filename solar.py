@@ -7,7 +7,7 @@
 
 import datetime
 import requests
-from constants import constant1, constant2
+from constants import constant1, constant2, constant_str
 import json
 
 eochair = constant1

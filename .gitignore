@@ -1,6 +1,6 @@
 # my current venv
 /home/croy/astronomy-lab/astronomy-lab/
-/home/croy/astronomy-lab/Constants.py
+/home/croy/astronomy-lab/constants.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

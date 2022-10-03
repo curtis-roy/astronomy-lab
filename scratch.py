@@ -4,14 +4,24 @@
 
 import datetime
 import json
-from pprint import pprint
 import requests
 from constants import constant1, constant2
 
 # test lat/lon values:  47.6987, -117.4397 (also, elevation is 526 m)
 #def get_sun_position(latitude, longitude):
 def get_sun_position():
-    """ """
+
+    """ Returns the current position of the Sun in the sky at
+        the specified location.
+
+        Parameters:
+        latitude (str)
+        longitude (str)
+        
+        Returns:
+        float:  altitude
+        float:  azimuth
+    """
 
     astronomy_api = ("https://api.astronomyapi.com/api/v2/bodies/positions/sun")
     let_me_in = (constant1, constant2)
@@ -23,36 +33,17 @@ def get_sun_position():
                 "to_date": str('2017-12-20')}
     response = requests.get(astronomy_api, auth=let_me_in, params=values)
     response_data = json.loads(response.content)
-    #response_data = json.loads()
-    pprint(response_data)
-
-
-# now I need to use csvkit to put the JSON output into a spreadsheet, then filter out the extra stuff.  see line 24 and 25
+    position = response_data["data"]["table"]["rows"][0]["cells"][0]["position"]["horizontal"]
+    altitude = position["altitude"]["degrees"]
+    azimuth = position["azimuth"]["degrees"]
+    print(f'The Sun is currently at altitude {altitude} and azimuth {azimuth}.')
+    return azimuth, altitude
 
 get_sun_position()
-    #now = datetime.now().strftime("%H:%M:%S")
-    # today = date.today()
-    
-    # # requirements for the API
-#     payload = { "latitude" : float(latitude),
-#                 "longitude" : float(longitude),
-#                 "elevation" : "50", # might or might not be required
-#                 "from_date" : today,
-#                 "to_date" : today,
-#                 "time" : now,
-#                 }
-#     url = 'https://api.astronomyapi.com/api/v2/bodies/positions/sun'
-#     response = requests.get(url,auth=auth,params=payload)
-#     data = response.json()
-#     position = data["data"]["table"]["rows"][0]["cells"][0]["position"]["horizontal"]
-#     altitude = position["altitude"]["degrees"]
-#     azimuth = position["azimuth"]["degrees"]
-#     return azimuth,altitude
 
-#     # second one is the non broken apart its for the altitude, you'd just change altitude to azimuth
-#     # response.json()["data"]["table"]["rows"][0]["cells"][0]["position"]["horizontal"]["altitude"]["degrees"]
+# get_sun_position is working with test values.  Need to refine.
 
-
+#######################################################################
 
 # def get_location():
 #     """ Returns the longitude and latitude for the location of an IP.
@@ -68,4 +59,5 @@ get_sun_position()
 #     return latitude, longitude
 
 # get_location()
+
 #get_location is now working and returns the desired values.  Copied into solar.py

@@ -4,13 +4,14 @@
 
 import datetime
 import json
+from pprint import pprint
 import requests
 from constants import constant1, constant2
-from pprint import pprint
 
 # test lat/lon values:  47.6987, -117.4397 (also, elevation is 526 m)
 #def get_sun_position(latitude, longitude):
 def get_sun_position():
+    """ """
 
     astronomy_api = ("https://api.astronomyapi.com/api/v2/bodies/positions/sun")
     let_me_in = (constant1, constant2)
@@ -19,11 +20,13 @@ def get_sun_position():
                 "elevation": str(526), # in meters
                 "from_date": str('2017-12-20'),
                 "time": "08:00:00",
-                "to_date": str('2017-12-27')}
+                "to_date": str('2017-12-20')}
     response = requests.get(astronomy_api, auth=let_me_in, params=values)
     response_data = json.loads(response.content)
     #response_data = json.loads()
     pprint(response_data)
+
+
 # now I need to use csvkit to put the JSON output into a spreadsheet, then filter out the extra stuff.  see line 24 and 25
 
 get_sun_position()

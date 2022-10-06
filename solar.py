@@ -7,7 +7,7 @@
 
 import datetime
 import requests
-from constants import constant1, constant2, constant_str
+from constants import constant1, constant2
 import json
 
 eochair = constant1
@@ -24,7 +24,9 @@ def get_location():
     target_data = json.loads(target.text)
     latitude = (target_data['lat'])
     longitude = (target_data['lon'])
+    print(latitude, longitude) # for testing
     return latitude, longitude
+
 
 get_location()
 

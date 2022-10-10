@@ -29,22 +29,7 @@ def get_location():
 
 get_location()
 
-###############################################
-### PICK UP HERE:  WORKING ON ELEVATION API ###
-###############################################
-
-def get_elevation():
-    """ Gathers the elevation at a specified latitude / longitude.
-
-        Returns:
-        <type?>:  elevation
-    """
-    lat, lon = get_location()
-    target = requests.get('https://api.open-elevation.com/api/v1/lookup?locations= ## lat, lon ##)
-    target_data = json.loads(target.text)
-    elevation = (target_data["elevation:"])
-    return elevation
-
+# placeholder for function using elevation API in 'scratch_elev.py'
 # test elevation is 526 m)
 
 def time_params():
@@ -80,7 +65,7 @@ def get_sun_position():
 
     loc_lat, loc_lon = get_location()
     cal_day, time_now = time_params()
-    loc_elev = get_elevation()
+    loc_elev = 526 # elevation in meters, work on elevation API in progress
     astronomy_api = ("https://api.astronomyapi.com/api/v2/bodies/positions/sun")
     let_me_in = (constant1, constant2)
     values = {  "latitude": loc_lat,

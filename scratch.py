@@ -14,6 +14,8 @@ def get_location():
         float:  latitude
         float:  longitude
         """
+    # current IP is a local entry for accuracy
+    # URL format based on the value returned by the API
     target = requests.get('http://ip-api.com/json/174.31.14.127?fields=lat,lon')
     target_data = json.loads(target.text)
     latitude = (target_data['lat'])
@@ -29,18 +31,24 @@ def time_params():
     """ Gathers the date and time values required for position.
     
     Returns:
-    string: today's date
-    Current time
+    str: today's date
+    str" Current time
 
     """
-    cal_day = datetime.date.today().strftime("%Y-%m-%d")
-
-    ##############################################
-    ### PICK IT UP HERE - NEED THE TIME VALUES ###
-    ##############################################
+    ##########################################################
+    ### IT'S GETTING THE HOURS, MINUTES, AND SECONDS WRONG ###
+    ##########################################################
     
+    day_time = datetime.date.today
+    cal_day = datetime.date.today().strftime("%Y-%m-%d")
+    time_now = datetime.date.today().strftime("%H:%M:%S")
+    print(day_time)
+    print(type(day_time))
     print(cal_day)
     print(type(cal_day))
+    print(time_now)
+    print(type(time_now))
+    return cal_day, time_now
 
 time_params()
 
@@ -58,14 +66,15 @@ def get_sun_position():
     """
 
     loc_lat, loc_lon = get_location()
+    cal_day, time_now = time_params()
     astronomy_api = ("https://api.astronomyapi.com/api/v2/bodies/positions/sun")
     let_me_in = (constant1, constant2)
     values = {  "latitude": loc_lat,
                 "longitude": loc_lon,
                 "elevation": str(526), # in meters
-                "from_date": str('2017-12-20'),
-                "to_date": str('2017-12-20'),
-                "time": "08:00:00" }
+                "from_date": cal_day,
+                "to_date": cal_day,
+                "time": time_now }
     response = requests.get(astronomy_api, auth=let_me_in, params=values)
     response_data = json.loads(response.content)
     position = response_data["data"]["table"]["rows"][0]["cells"][0]["position"]["horizontal"]

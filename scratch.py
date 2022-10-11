@@ -29,8 +29,10 @@ def get_location():
 
 get_location()
 
-# placeholder for function using elevation API in 'scratch_elev.py'
-# test elevation is 526 m)
+# def get_elevation():
+#     placeholder for function using elevation API in 'scratch_elev.py'
+#     test elevation is 526 m)
+# get_elevation()
 
 def time_params():
 

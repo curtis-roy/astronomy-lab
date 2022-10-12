@@ -15,8 +15,8 @@ def get_location():
         IP address
 
         Returns:
-        float:  latitude (converted to str for actual use)
-        float:  longitude (converted to str for actual use)
+        float:  latitude
+        float:  longitude
         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         Note:  The IP below in "target" is a local entry to confirm
         accuracy with external sources.  The URL format is based on the
@@ -43,16 +43,18 @@ def get_elevation():
         Returns:
         <type?>:  elevation
     """
-    # loc_lat, loc_lon = get_location()
-    # values = loc_lat, loc_lon
+    loc_lat, loc_lon = get_location()
+    values = loc_lat,loc_lon
+    print(values) # accurate value returned
+    print(type(loc_lat))
+    print(type(loc_lon))
     # elevation_api = ('https://api.open-elevation.com/api/v1/lookup?locations=')
-    target = requests.get('https://api.open-elevation.com/api/v1/lookup?locations=47.65,117.42')
-    # target = requests.get(elevation_api, params=values)
-    target_data = target.json()
-    raw_target_data = target_data["results"]
+    target = requests.get('https://api.open-elevation.com/api/v1/lookup?locations=47.6987,-117.4397')
+    raw_target_data = target.json()
+    # print(target_data)
     print(raw_target_data)
     print(type(raw_target_data))
-    #print(target_data)
+    print(raw_target_data['results']['elevation'])
     # return raw_target_data
 
 get_elevation()

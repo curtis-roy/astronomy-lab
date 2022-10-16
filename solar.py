@@ -1,6 +1,17 @@
 #!/bin/env python3
 
-"""Scratchpad"""
+""" An application to output the position of the Sun in the sky at the current
+    time, from a specific latitude and longitude.
+    
+    Parameters:
+    IP address (autodetected)
+    Date / time (local system)
+    Data gathered from https://astronomyapi.com/
+
+    Returns:
+    'As of <date> <time>, the Sun is at < X > degrees azimuth and < X > degrees altitude.'
+
+    """
 
 import datetime
 import time
@@ -28,11 +39,6 @@ def get_location():
     return latitude,longitude
 
 get_location()
-
-# def get_elevation():
-#     placeholder for function using elevation API in 'scratch_elev.py'
-#     test elevation is 526 m)
-# get_elevation()
 
 def time_params():
 

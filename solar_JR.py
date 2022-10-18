@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
+
+
 import datetime
 import os
-import requests
 import sys
+import requests
 
 ASTRONOMYAPI_ID = os.environ.get("ASTRONOMYAPI_ID")
 ASTRONOMYAPI_SECRET = os.environ.get("ASTRONOMYAPI_SECRET")
+
 
 def get_observer_location():
     """Returns the longitude and latitude for the location of this machine.
@@ -24,6 +27,7 @@ def get_observer_location():
     data = response.json()
     # NOTE: Replace with your real return values!
     return data.get("lat"), data.get("lon")
+
 
 def get_sun_position(latitude, longitude, body="sun"):
     """Returns the current position of the sun in the sky at the specified location
@@ -47,8 +51,8 @@ def get_sun_position(latitude, longitude, body="sun"):
     }
     try:
         response = requests.get(
-            url, params=params,
-            auth=(ASTRONOMYAPI_ID, ASTRONOMYAPI_SECRET))
+            url, params=params, auth=(ASTRONOMYAPI_ID, ASTRONOMYAPI_SECRET)
+        )
         if not response.status_code == 200:
             return None, None
     except requests.exceptions.ConnectionError:
@@ -62,15 +66,16 @@ def get_sun_position(latitude, longitude, body="sun"):
     az = position["azimuth"]["degrees"]
     return az, alt
 
+
 def print_position(azimuth, altitude):
     """Prints the position of the sun in the sky using the supplied coordinates
     Parameters:
     azimuth (float)
     altitude (float)"""
     print(
-        f"The Sun is currently at: "
-        f"{altitude} deg altitude, {azimuth} deg azimuth."
+        f"The Sun is currently at: " f"{altitude} deg altitude, {azimuth} deg azimuth."
     )
+
 
 if __name__ == "__main__":
     latitude, longitude = get_observer_location()

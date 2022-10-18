@@ -5,13 +5,15 @@
 
 import datetime
 import time
+
 # import json
 # import requests
 # from constants import constant1, constant2
 
+
 def time_params():
 
-    """ Gathers the date and time values required for position.
+    """Gathers the date and time values required for position.
 
     Returns:
     str: today's date
@@ -23,5 +25,6 @@ def time_params():
     time_now = time.strftime("%H:%M:%S")
 
     return cal_day, time_now
+
 
 time_params()

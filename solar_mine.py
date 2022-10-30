@@ -1,8 +1,8 @@
 #!/bin/env python3
 
 """ An application to output the position of the Sun in the sky at the current
-    time, from a specific latitude and longitude.
-    
+    time, from a specific latitude and longitude.\
+
     Parameters:
     IP address (autodetected)
     Date / time (local system)
